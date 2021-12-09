@@ -1,0 +1,4 @@
+my-app/node_modules
+my-app/package_lock.json
+backEnd/node_modules
+backEnd/package_lock.json
