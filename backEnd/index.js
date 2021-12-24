@@ -166,4 +166,25 @@ catch(error)
 
 })
 
+// adding new subDepartment
+OurApp.post("/subDepartment/new",async(req,res)=>{
+  try{
+    const {newSubDepartment}=req.body;
+    await SubDepartment.create(newSubDepartment);
+    return res.json({message: "new subDepartment added"})
+  }
+  catch(error)
+  {
+    return res.json({error: error.message});
+  }
+  
+  })
+
+// getting all the subDepartment Based upon faculty
+OurApp.get("/subDepartment/:faculty",async(req,res)=>{
+  const getSubDepartment = await SubDepartment.find({
+    Faculty: req.params.faculty
+  })
+  return res.json({getSubDepartment})
+})
 OurApp.listen(5000, () => console.log("started the server"));
