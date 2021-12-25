@@ -187,4 +187,4 @@ OurApp.get("/subDepartment/:faculty",async(req,res)=>{
   })
   return res.json({getSubDepartment})
 })
-OurApp.listen(5000, () => console.log("started the server"));
+OurApp.listen(process.env.PORT || 5000, () => console.log("started the server"));
