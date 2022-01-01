@@ -3,9 +3,19 @@ const mongoose = require("mongoose");
 const SubDepartmentSchema = mongoose.Schema({
   Faculty: {
     type: String,
-    required: true,
   },
   SubDepartment: {
+    type: String,
+    unique: true,
+  },
+  DisplayName: {
+    type: String,
+  },
+  getAll: {
+    type: [Number],
+    required: true,
+  },
+  Date: {
     type: String,
     required: true,
   },

@@ -5,6 +5,10 @@ const FacultySchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  DisplayName: {
+    type: String,
+    required: true,
+  },
 });
 
 const FacultyModel = mongoose.model("faculty", FacultySchema);
