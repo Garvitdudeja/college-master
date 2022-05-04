@@ -22,16 +22,26 @@ OurApp.get("/", (request, response) => {
   response.json({ message: "link working" });
 });
 
-//getting teacher with department
-OurApp.get("/teacher/:faculity/:subdepartment", async (req, res) => {
+// Route    - /teacher/:faculity/:subdepartment
+// Des      - To get all teachers on basis of Faculity and SubDepartment
+// Access   - Public
+// Method   - GET
+// Params   - faculty and subdepartment
+// Body     - none
+OurApp.get("/teacher/:faculty/:subdepartment", async (req, res) => {
   const getTeachers = await Teacher.find({
-    Faculity: req.params.faculity,
+    Faculity: req.params.faculty,
     SubDepartment: req.params.subdepartment,
   });
   return res.json({ getTeachers });
 });
 
-//Adding new teachers
+// Route    - /teacher/new
+// Des      - To add new Teacher
+// Access   - Public
+// Method   - POST
+// Params   - None
+// Body     - none
 OurApp.post("/teacher/new", async (req, res) => {
   try {
     const { newTeacher } = req.body;
@@ -42,13 +52,23 @@ OurApp.post("/teacher/new", async (req, res) => {
   }
 });
 
-//Getting all faculty
+// Route    - /faculty
+// Des      - To get all Faculty
+// Access   - Public
+// Method   - GET
+// Params   - none
+// Body     - none
+
 OurApp.get("/faculty", async (req, res) => {
   const getDepartment = await Faculty.find({});
   return res.json({ getDepartment });
 });
-
-//adding new faculty
+// Route    - /faculty/new
+// Des      - To add new faculty
+// Access   - Public
+// Method   - Post
+// Params   - none
+// Body     - none
 OurApp.post("/faculty/new", async (req, res) => {
   try {
     const { newFaculty } = req.body;
@@ -59,8 +79,28 @@ OurApp.post("/faculty/new", async (req, res) => {
   }
 });
 
-// adding new subDepartment
-OurApp.post("/subDepartment/new", async (req, res) => {
+// Route    - /subDepartment/new
+// Des      - To add new Subdepartment
+// Access   - Public
+// Method   - Post
+// Params   - none
+// Body     - none
+
+OurApp.post("/subDepartment/new", async(req, res) => {
+  try {
+    const {newSub} = req.body;
+    await SubDepartment.create(newSub)
+    res.json({message: "new SubDepartment Sucessfully added"})
+  }
+  catch(error)
+  {
+    res.json({error: error.message})
+  }
+})
+
+// updating subDepartment
+
+OurApp.post("/subDepartment/update", async (req, res) => {
   try {
     const { newSub } = req.body;
     const fullData = await apiData.find({
@@ -83,6 +123,8 @@ OurApp.post("/subDepartment/new", async (req, res) => {
         sum1 += arr[1];
         count += 1;
       });
+      B.push(sum)
+      B.push(sum1)
       B.push(sum / count);
       B.push(sum1 / count);
       return y;

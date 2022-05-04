@@ -13,11 +13,9 @@ const SubDepartmentSchema = mongoose.Schema({
   },
   getAll: {
     type: [Number],
-    required: true,
   },
   Date: {
     type: String,
-    required: true,
   },
 });
 
